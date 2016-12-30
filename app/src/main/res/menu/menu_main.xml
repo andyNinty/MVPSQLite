@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/save_to_db"
+        android:title="保存到数据库"
+        app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/del_from_db"
+        android:title="删除DB中所有数据"
+        app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/update_db"
+        android:title="更新某一条数据"
+        app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/query_db"
+        android:title="查找某一条数据"
+        app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/query_all_from_db"
+        android:title="查找所有数据"
+        app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/delete_db"
+        android:title="删除数据库"
+        app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/add_item"
+        android:title="在view上增加item"
+        app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/remove_item"
+        android:title="移除一条数据"
+        app:showAsAction="collapseActionView"/>
+</menu>
