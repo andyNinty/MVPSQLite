@@ -1,6 +1,8 @@
 package andy.lee.myrecyclerview.fragment;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -188,6 +190,24 @@ public class MyListFragment extends BaseFragment implements OnStartDragListener 
                     mList.add(userInfo);
                     mAdapter.notifyDataSetChanged();
                 }
+                break;
+            case R.id.custom_dialog:
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                builder.setView(inflater.inflate(R.layout.custom_dialog, null))
+                        .setCancelable(false)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                // TODO: 17-1-3 contentProvider 更新通讯录
+                            }
+                        })
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                
+                            }
+                        });
+                builder.create().show();
                 break;
         }
         return super.onOptionsItemSelected(item);

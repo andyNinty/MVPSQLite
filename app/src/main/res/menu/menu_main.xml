@@ -43,4 +43,10 @@
         android:id="@+id/remove_item"
         android:title="移除一条数据"
         app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/custom_dialog"
+        android:title="修改联系人"
+        app:showAsAction="collapseActionView"/>
+
 </menu>
