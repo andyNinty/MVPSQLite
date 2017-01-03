@@ -14,12 +14,14 @@
 
     <item
         android:id="@+id/update_db"
-        android:title="更新某一条数据"
-        app:showAsAction="collapseActionView"/>
+        android:title="更新第一条数据"
+        app:showAsAction="collapseActionView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
 
     <item
         android:id="@+id/query_db"
-        android:title="查找某一条数据"
+        android:title="查找第一条数据"
         app:showAsAction="collapseActionView"/>
 
     <item

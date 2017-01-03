@@ -125,6 +125,8 @@ public class MyListFragment extends Fragment implements OnStartDragListener {
 
             case R.id.del_from_db:
                 boolean isDel = DBManager.getInstance().deleteUserInfo();
+                mList.clear();
+                mAdapter.notifyDataSetChanged();
                 Toast.makeText(getActivity(), "delete " + isDel, Toast.LENGTH_SHORT).show();
                 break;
 
@@ -145,6 +147,8 @@ public class MyListFragment extends Fragment implements OnStartDragListener {
 
             case R.id.delete_db:
                 DBManager.getInstance().deleteDb();
+                mList.clear();
+                mAdapter.notifyDataSetChanged();
                 break;
 
             case R.id.query_all_from_db:
