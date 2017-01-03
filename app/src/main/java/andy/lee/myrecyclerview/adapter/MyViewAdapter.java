@@ -53,7 +53,8 @@ public class MyViewAdapter extends RecyclerView.Adapter<MyViewAdapter.ViewHolder
     public void onBindViewHolder(final ViewHolder holder, int position) {
         UserInfo userInfo = mList.get(position);
         holder.imageView.setImageResource(userInfo.getResId());
-        holder.textView.setText(userInfo.getName());
+        holder.name.setText(userInfo.getName());
+        holder.phoneNumber.setText(userInfo.getPhoneNumber());
         holder.imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -86,12 +87,14 @@ public class MyViewAdapter extends RecyclerView.Adapter<MyViewAdapter.ViewHolder
 
     static class ViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
         private final ImageView imageView;
-        private final TextView textView;
+        private final TextView name;
+        private final TextView phoneNumber;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            textView = (TextView) itemView.findViewById(R.id.textView);
+            name = (TextView) itemView.findViewById(R.id.name);
+            phoneNumber = (TextView) itemView.findViewById(R.id.phone_number);
         }
 
         @Override

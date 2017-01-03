@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public DBHelper(Context context, String name) {
         super(context, name, null, DATABASE_VERSION);
@@ -21,7 +21,8 @@ public class DBHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_USER_TABLE = "CREATE TABLE " + UserEntry.UserEntryColumn.TABLE_NAME + "("
                 + UserEntry.UserEntryColumn._ID + " INTEGER PRIMARY KEY, "
                 + UserEntry.UserEntryColumn.AVATAR_ID + " INTEGER ,"
-                + UserEntry.UserEntryColumn.USER_NAME + " TEXT )";
+                + UserEntry.UserEntryColumn.USER_NAME + " TEXT ,"
+                + UserEntry.UserEntryColumn.PHONE_NUMBER + " TEXT )";
 
         db.execSQL(SQL_CREATE_USER_TABLE);
 

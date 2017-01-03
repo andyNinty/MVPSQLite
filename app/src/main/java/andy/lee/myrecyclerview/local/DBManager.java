@@ -47,13 +47,16 @@ public class DBManager implements DBOptionRule {
     }
 
     @Override
-    public boolean insertUserInfo(int position, int resId, String name) {
+    public boolean insertUserInfo(int position, int resId, String name, String phoneNumber) {
         ContentValues values = new ContentValues();
         if (resId != 0) {
             values.put(UserEntry.UserEntryColumn.AVATAR_ID, resId);
         }
         if (name != null) {
             values.put(UserEntry.UserEntryColumn.USER_NAME, name);
+        }
+        if (phoneNumber != null) {
+            values.put(UserEntry.UserEntryColumn.PHONE_NUMBER, phoneNumber);
         }
         final SQLiteDatabase db = mDBHelper.getWritableDatabase();
         final String selection = UserEntry.UserEntryColumn._ID + " = ?";
@@ -134,6 +137,7 @@ public class DBManager implements DBOptionRule {
             UserInfo userInfo = new UserInfo();
             userInfo.setName(cursor.getString(cursor.getColumnIndex(UserEntry.UserEntryColumn.USER_NAME)));
             userInfo.setResId(cursor.getInt(cursor.getColumnIndex(UserEntry.UserEntryColumn.AVATAR_ID)));
+            userInfo.setPhoneNumber(cursor.getString(cursor.getColumnIndex(UserEntry.UserEntryColumn.PHONE_NUMBER)));
             userInfoList.add(userInfo);
         }
         cursor.close();

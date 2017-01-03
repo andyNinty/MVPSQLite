@@ -17,6 +17,8 @@ public class UserEntry {
         public static final String AVATAR_ID = "avatar_id";
         //名字
         public static final String USER_NAME = "user_name";
+        //手机号码
+        public static final String PHONE_NUMBER = "phone_number";
 
     }
 }

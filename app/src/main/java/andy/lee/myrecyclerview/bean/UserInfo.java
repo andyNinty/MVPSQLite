@@ -8,14 +8,16 @@ package andy.lee.myrecyclerview.bean;
 public class UserInfo {
     private int resId;
     private String name;
+    private String phoneNumber;
 
     public UserInfo() {
 
     }
 
-    public UserInfo(int resId, String name) {
+    public UserInfo(int resId, String name,String phoneNumber) {
         this.resId = resId;
         this.name = name;
+        this.phoneNumber = phoneNumber;
     }
 
     public int getResId() {
@@ -32,5 +34,13 @@ public class UserInfo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

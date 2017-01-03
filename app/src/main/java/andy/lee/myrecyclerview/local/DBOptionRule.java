@@ -11,7 +11,7 @@ import andy.lee.myrecyclerview.bean.UserInfo;
 
 public interface DBOptionRule {
 
-    boolean insertUserInfo(int position, int resId, String name);
+    boolean insertUserInfo(int position, int resId, String name,String phoneNumber);
 
     boolean deleteUserInfo();
 
