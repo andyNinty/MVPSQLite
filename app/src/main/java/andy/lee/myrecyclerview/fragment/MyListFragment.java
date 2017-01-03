@@ -193,13 +193,15 @@ public class MyListFragment extends BaseFragment implements OnStartDragListener 
                 break;
             case R.id.custom_dialog:
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                LayoutInflater inflater = getActivity().getLayoutInflater();
-                builder.setView(inflater.inflate(R.layout.custom_dialog, null))
+                final LayoutInflater inflater = getActivity().getLayoutInflater();
+                View view = inflater.inflate(R.layout.custom_dialog, null)
+                builder.setView(view)
                         .setCancelable(false)
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 // TODO: 17-1-3 contentProvider 更新通讯录
+                                
                             }
                         })
                         .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
