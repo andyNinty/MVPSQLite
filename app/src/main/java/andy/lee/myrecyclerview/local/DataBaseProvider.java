@@ -56,7 +56,7 @@ public class DataBaseProvider extends ContentProvider {
                 }
                 break;
             default:
-                throw new UnsupportedOperationException("Not yet implemented");
+                throw new UnsupportedOperationException("there is no match");
         }
         return returnUri;
     }
@@ -75,7 +75,7 @@ public class DataBaseProvider extends ContentProvider {
                 deleteRows = db.delete(TABLE_NAME, UserEntry.UserEntryColumn._ID + " = ?", new String[]{id});
                 break;
             default:
-                throw new UnsupportedOperationException("Not yet implemented");
+                throw new UnsupportedOperationException("there is no match");
         }
         return deleteRows;
     }
@@ -95,7 +95,7 @@ public class DataBaseProvider extends ContentProvider {
                 updateRows = db.update(TABLE_NAME, values, UserEntry.UserEntryColumn._ID + " = ?", new String[]{id});
                 break;
             default:
-                throw new UnsupportedOperationException("Not yet implemented");
+                throw new UnsupportedOperationException("there is no match");
         }
         return updateRows;
     }
@@ -114,7 +114,7 @@ public class DataBaseProvider extends ContentProvider {
                 cursor = db.query(TABLE_NAME, projection, UserEntry.UserEntryColumn._ID + " = ?", new String[]{id}, null, null, sortOrder);
                 break;
             default:
-                throw new UnsupportedOperationException("Not yet implemented");
+                throw new UnsupportedOperationException("there is no match");
         }
         return cursor;
     }
@@ -127,7 +127,7 @@ public class DataBaseProvider extends ContentProvider {
             case USER_ITEM:
                 return MIME_ITEM;
             default:
-                throw new UnsupportedOperationException("Not yet implemented");
+                throw new UnsupportedOperationException("there is no match");
         }
     }
 }

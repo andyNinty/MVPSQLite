@@ -148,7 +148,7 @@ public class DBManager implements DBOptionRule {
     @Override
     public void deleteDb() {
         mContext.deleteDatabase(mDbName);
-        instance = null;
+//        instance = null;
     }
 
     @Override
