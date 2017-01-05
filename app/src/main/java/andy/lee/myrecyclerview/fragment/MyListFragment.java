@@ -1,11 +1,9 @@
 package andy.lee.myrecyclerview.fragment;
 
 import android.Manifest;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.database.Cursor;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,22 +23,23 @@ import andy.lee.myrecyclerview.R;
 import andy.lee.myrecyclerview.adapter.MyViewAdapter;
 import andy.lee.myrecyclerview.base.BaseFragment;
 import andy.lee.myrecyclerview.base.SimpleDividerItemDecoration;
-import andy.lee.myrecyclerview.bean.UserInfo;
+import andy.lee.myrecyclerview.presenter.UserContract;
+import andy.lee.myrecyclerview.data.UserInfo;
 import andy.lee.myrecyclerview.helper.OnStartDragListener;
 import andy.lee.myrecyclerview.helper.SimpleItemTouchHelperCallback;
-import andy.lee.myrecyclerview.local.DBManager;
 
 /**
  * andy.lee.myrecyclerview
  * Created by andy on 16-12-28.
  */
 
-public class MyListFragment extends BaseFragment implements OnStartDragListener {
+public class MyListFragment extends BaseFragment implements OnStartDragListener,UserContract.View {
 
     private List<UserInfo> mList = new ArrayList<>();
     private MyViewAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private ItemTouchHelper mItemTouchHelper;
+    private UserContract.Presenter mPresenter;
 
 
     @Override
@@ -55,6 +54,7 @@ public class MyListFragment extends BaseFragment implements OnStartDragListener 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        initRecyclerView();
         return view;
     }
 
@@ -64,8 +64,7 @@ public class MyListFragment extends BaseFragment implements OnStartDragListener 
         requestRuntimePermission(new String[]{Manifest.permission.READ_CONTACTS}, new PermissionListener() {
             @Override
             public void onGranted() {
-                initData();
-                initRecyclerView();
+                mPresenter.start();
             }
 
             @Override
@@ -82,38 +81,12 @@ public class MyListFragment extends BaseFragment implements OnStartDragListener 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new MyViewAdapter(getContext(), this);
-        mAdapter.addList(mList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity(), 1));
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
-    }
-
-    private void initData() {
-        Cursor cursor = getContext().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
-                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                String phoneNum = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                UserInfo userInfo = new UserInfo(R.mipmap.pic1, name, phoneNum);
-                mList.add(userInfo);
-            }
-        }
-        if (mList.isEmpty()) {
-            Toast.makeText(getActivity(), "您还没有联系人", Toast.LENGTH_SHORT).show();
-        }
-        if (cursor != null) {
-            cursor.close();
-        }
-    }
-
-    private void addItem() {
-        for (int i = 0; i < 15; i++) {
-            UserInfo userInfo = new UserInfo(R.mipmap.pic2, "李四" + i, String.valueOf(i));
-            mList.add(userInfo);
-        }
     }
 
     @Override
@@ -132,84 +105,35 @@ public class MyListFragment extends BaseFragment implements OnStartDragListener 
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.add_item:
-                addItem();
-                mAdapter.addList(mList);
-                break;
-
             case R.id.remove_item:
-                mList.remove(mList.size() - 1);
-                boolean isDelFromDb = DBManager.getInstance().deleteUserInfo(mList.size());
-                Toast.makeText(getActivity(), "删除第" + String.valueOf(mList.size() - 1) + isDelFromDb, Toast.LENGTH_SHORT).show();
-                mAdapter.notifyDataSetChanged();
+               mPresenter.deleteOneUser();
                 break;
 
             case R.id.save_to_db:
-                boolean isInsert = false;
-                for (int i = 0; i < mList.size(); i++) {
-                    UserInfo userInfo = mList.get(i);
-                    isInsert = DBManager.getInstance().insertUserInfo(i, userInfo.getResId(), userInfo.getName(), userInfo.getPhoneNumber());
-                }
-                Toast.makeText(getActivity(), "insert " + isInsert, Toast.LENGTH_SHORT).show();
+                mPresenter.insertUser();
                 break;
 
             case R.id.del_from_db:
-                boolean isDel = DBManager.getInstance().deleteUserInfo();
-                mList.clear();
-                mAdapter.notifyDataSetChanged();
-                Toast.makeText(getActivity(), "delete " + isDel, Toast.LENGTH_SHORT).show();
+                mPresenter.deleteUser();
                 break;
 
             case R.id.update_db:
-                boolean isUpdate = DBManager.getInstance().updateUserInfo(0, "王二");
-                Toast.makeText(getActivity(), "update " + isUpdate, Toast.LENGTH_SHORT).show();
+                mPresenter.updateUser();
                 break;
 
             case R.id.query_db:
-                List<UserInfo> list = DBManager.getInstance().queryUserInfo(0);
-                for (int i = 0; i < list.size(); i++) {
-                    UserInfo userInfo = list.get(i);
-                    String name = userInfo.getName();
-                    String phoneNumber = userInfo.getPhoneNumber();
-                    Toast.makeText(getActivity(), " name is " + name + "phoneNumber is " + phoneNumber, Toast.LENGTH_SHORT).show();
-                }
+               mPresenter.queryOneUser();
                 break;
 
             case R.id.delete_db:
-                DBManager.getInstance().deleteDb();
-                mList.clear();
-                mAdapter.notifyDataSetChanged();
+                mPresenter.deleteDB();
                 break;
 
             case R.id.query_all_from_db:
-                List<UserInfo> userList = DBManager.getInstance().queryUserInfo();
-                mList.clear();
-                for (int i = 0; i < userList.size(); i++) {
-                    UserInfo info = userList.get(i);
-                    UserInfo userInfo = new UserInfo(R.mipmap.ic_launcher, info.getName(), info.getPhoneNumber());
-                    mList.add(userInfo);
-                    mAdapter.notifyDataSetChanged();
-                }
+                mPresenter.queryUser();
                 break;
             case R.id.custom_dialog:
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                final LayoutInflater inflater = getActivity().getLayoutInflater();
-                View view = inflater.inflate(R.layout.custom_dialog, null);
-                builder.setView(view)
-                        .setCancelable(false)
-                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                // TODO: 17-1-3 contentProvider 更新通讯录
-
-                            }
-                        })
-                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                
-                            }
-                        });
-                builder.create().show();
+                mPresenter.updateContract();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -218,7 +142,43 @@ public class MyListFragment extends BaseFragment implements OnStartDragListener 
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        DBManager.getInstance().release();
+        mPresenter.releaseDb();
+
     }
 
+    @Override
+    public Context getCtx() {
+        return getContext();
+    }
+
+    @Override
+    public Activity getAct() {
+        return getActivity();
+    }
+
+    @Override
+    public void clearList() {
+        mList.clear();
+    }
+
+    @Override
+    public void updateListView() {
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showUserInfo(List<UserInfo> userInfo) {
+        mList = userInfo;
+        mAdapter.addList(mList);
+    }
+
+    @Override
+    public void showToast(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setPresenter(UserContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
 }

@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 import andy.lee.myrecyclerview.R;
-import andy.lee.myrecyclerview.bean.UserInfo;
+import andy.lee.myrecyclerview.data.UserInfo;
 import andy.lee.myrecyclerview.helper.ItemTouchHelperAdapter;
 import andy.lee.myrecyclerview.helper.ItemTouchHelperViewHolder;
 import andy.lee.myrecyclerview.helper.OnStartDragListener;

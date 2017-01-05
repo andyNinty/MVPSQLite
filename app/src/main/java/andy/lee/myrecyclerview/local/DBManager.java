@@ -9,7 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import andy.lee.myrecyclerview.bean.UserInfo;
+import andy.lee.myrecyclerview.data.UserInfo;
 
 /**
  * andy.lee.myrecyclerview.local
@@ -117,6 +117,7 @@ public class DBManager implements DBOptionRule {
             UserInfo userInfo = new UserInfo();
             userInfo.setName(cursor.getString(cursor.getColumnIndex(UserEntry.UserEntryColumn.USER_NAME)));
             userInfo.setResId(cursor.getInt(cursor.getColumnIndex(UserEntry.UserEntryColumn.AVATAR_ID)));
+            userInfo.setPhoneNumber(cursor.getString(cursor.getColumnIndex(UserEntry.UserEntryColumn.PHONE_NUMBER)));
             userInfoList.add(userInfo);
         }
         cursor.close();
@@ -148,7 +149,6 @@ public class DBManager implements DBOptionRule {
     @Override
     public void deleteDb() {
         mContext.deleteDatabase(mDbName);
-        instance = null;
     }
 
     @Override

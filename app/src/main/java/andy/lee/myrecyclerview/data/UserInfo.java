@@ -1,4 +1,4 @@
-package andy.lee.myrecyclerview.bean;
+package andy.lee.myrecyclerview.data;
 
 /**
  * andy.lee.myrecyclerview
@@ -42,5 +42,14 @@ public class UserInfo {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "resId=" + resId +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }

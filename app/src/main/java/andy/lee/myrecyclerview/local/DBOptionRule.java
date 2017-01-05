@@ -2,7 +2,7 @@ package andy.lee.myrecyclerview.local;
 
 import java.util.List;
 
-import andy.lee.myrecyclerview.bean.UserInfo;
+import andy.lee.myrecyclerview.data.UserInfo;
 
 /**
  * andy.lee.myrecyclerview.local
