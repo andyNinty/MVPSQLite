@@ -47,7 +47,7 @@ public class DBManager implements DBOptionRule {
     }
 
     @Override
-    public boolean insertUserInfo(int position, int resId, String name, String phoneNumber) {
+    public synchronized boolean insertUserInfo(int position, int resId, String name, String phoneNumber) {
         ContentValues values = new ContentValues();
         if (resId != 0) {
             values.put(UserEntry.UserEntryColumn.AVATAR_ID, resId);
@@ -148,11 +148,13 @@ public class DBManager implements DBOptionRule {
     @Override
     public void deleteDb() {
         mContext.deleteDatabase(mDbName);
-//        instance = null;
+        instance = null;
     }
 
     @Override
     public void release() {
-        instance = null;
+        if (instance != null) {
+            instance = null;
+        }
     }
 }
