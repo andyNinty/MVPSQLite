@@ -1,4 +1,4 @@
-package andy.lee.myrecyclerview.fragment;
+package andy.lee.myrecyclerview.ui.fragment;
 
 import android.Manifest;
 import android.app.Activity;
@@ -23,7 +23,7 @@ import andy.lee.myrecyclerview.R;
 import andy.lee.myrecyclerview.adapter.MyViewAdapter;
 import andy.lee.myrecyclerview.base.BaseFragment;
 import andy.lee.myrecyclerview.base.SimpleDividerItemDecoration;
-import andy.lee.myrecyclerview.presenter.UserContract;
+import andy.lee.myrecyclerview.contract.UserContract;
 import andy.lee.myrecyclerview.data.UserInfo;
 import andy.lee.myrecyclerview.helper.OnStartDragListener;
 import andy.lee.myrecyclerview.helper.SimpleItemTouchHelperCallback;

@@ -1,4 +1,4 @@
-package andy.lee.myrecyclerview.presenter;
+package andy.lee.myrecyclerview.contract;
 
 import android.app.Activity;
 import android.content.Context;

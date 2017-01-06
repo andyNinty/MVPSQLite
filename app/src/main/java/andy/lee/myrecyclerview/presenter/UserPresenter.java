@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import andy.lee.myrecyclerview.R;
+import andy.lee.myrecyclerview.contract.UserContract;
 import andy.lee.myrecyclerview.data.UserInfo;
 import andy.lee.myrecyclerview.local.DBManager;
 
