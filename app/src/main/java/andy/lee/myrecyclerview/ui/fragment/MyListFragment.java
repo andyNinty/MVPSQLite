@@ -27,6 +27,7 @@ import andy.lee.myrecyclerview.contract.UserContract;
 import andy.lee.myrecyclerview.data.UserInfo;
 import andy.lee.myrecyclerview.helper.OnStartDragListener;
 import andy.lee.myrecyclerview.helper.SimpleItemTouchHelperCallback;
+import andy.lee.myrecyclerview.ife.PermissionListener;
 
 /**
  * andy.lee.myrecyclerview
