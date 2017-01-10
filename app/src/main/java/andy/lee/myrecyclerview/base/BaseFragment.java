@@ -9,13 +9,14 @@ import android.support.v4.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 
+import andy.lee.myrecyclerview.ife.PermissionListener;
+
 /**
  * andy.lee.contentprovidertest
  * Created by andy on 17-1-3.
  */
 
 public class BaseFragment extends Fragment {
-
     private PermissionListener mListener;
 
     public void requestRuntimePermission(String[] permissions, PermissionListener listener) {
@@ -29,8 +30,6 @@ public class BaseFragment extends Fragment {
         }
         if (!permissionList.isEmpty()) {
             ActivityCompat.requestPermissions(getActivity(), permissionList.toArray(new String[permissionList.size()]), 1);
-        } else {
-            mListener.onGranted();
         }
     }
 
@@ -60,9 +59,4 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    public interface PermissionListener {
-        void onGranted();
-
-        void onDenied(List<String> permissionList);
-    }
 }

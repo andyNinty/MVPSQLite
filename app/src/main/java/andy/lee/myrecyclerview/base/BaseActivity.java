@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import andy.lee.myrecyclerview.ife.PermissionListener;
+
 /**
  * andy.lee.contentprovidertest
  * Created by andy on 17-1-3.
@@ -28,8 +30,6 @@ public class BaseActivity extends AppCompatActivity {
         }
         if (!permissionList.isEmpty()) {
             ActivityCompat.requestPermissions(this, permissionList.toArray(new String[permissionList.size()]), 1);
-        } else {
-            mListener.onGranted();
         }
     }
 
@@ -59,9 +59,4 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public interface PermissionListener {
-        void onGranted();
-
-        void onDenied(List<String> permissionList);
-    }
 }
