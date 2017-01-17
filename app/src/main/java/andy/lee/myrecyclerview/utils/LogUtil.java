@@ -15,7 +15,7 @@ public class LogUtil {
 
     private static final int INFO = 2;
 
-    private static final int WRAN = 3;
+    private static final int WARN = 3;
 
     private static final int ERROR = 4;
 
@@ -44,7 +44,7 @@ public class LogUtil {
     }
 
     public static void w(String tag, String msg) {
-        if (level <= WRAN) {
+        if (level <= WARN) {
             Log.w(tag, msg);
         }
     }
