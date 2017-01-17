@@ -30,6 +30,8 @@ public class BaseFragment extends Fragment {
         }
         if (!permissionList.isEmpty()) {
             ActivityCompat.requestPermissions(getActivity(), permissionList.toArray(new String[permissionList.size()]), 1);
+        } else {
+            mListener.onGranted();
         }
     }
 

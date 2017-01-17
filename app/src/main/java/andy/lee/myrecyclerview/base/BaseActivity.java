@@ -30,6 +30,8 @@ public class BaseActivity extends AppCompatActivity {
         }
         if (!permissionList.isEmpty()) {
             ActivityCompat.requestPermissions(this, permissionList.toArray(new String[permissionList.size()]), 1);
+        } else {
+            mListener.onGranted();
         }
     }
 
