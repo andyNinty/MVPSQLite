@@ -34,7 +34,7 @@ import andy.lee.myrecyclerview.ife.PermissionListener;
  * Created by andy on 16-12-28.
  */
 
-public class MyListFragment extends BaseFragment implements OnStartDragListener,UserContract.View {
+public class MyListFragment extends BaseFragment implements OnStartDragListener, UserContract.View {
 
     private List<UserInfo> mList = new ArrayList<>();
     private MyViewAdapter mAdapter;
@@ -107,7 +107,7 @@ public class MyListFragment extends BaseFragment implements OnStartDragListener,
 
         switch (item.getItemId()) {
             case R.id.remove_item:
-               mPresenter.deleteOneUser();
+                mPresenter.deleteOneUser();
                 break;
 
             case R.id.save_to_db:
@@ -123,7 +123,7 @@ public class MyListFragment extends BaseFragment implements OnStartDragListener,
                 break;
 
             case R.id.query_db:
-               mPresenter.queryOneUser();
+                mPresenter.queryOneUser();
                 break;
 
             case R.id.delete_db:

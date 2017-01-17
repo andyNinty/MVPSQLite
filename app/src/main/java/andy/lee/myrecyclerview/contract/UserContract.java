@@ -16,6 +16,9 @@ import andy.lee.myrecyclerview.data.UserInfo;
 
 public interface UserContract {
 
+    /**
+     * 界面逻辑处理，各种界面的显示或隐藏
+     */
     interface View extends BaseView<Presenter> {
 
         Context getCtx();
@@ -28,10 +31,11 @@ public interface UserContract {
 
         void showUserInfo(List<UserInfo> userInfo);
 
-        void showToast(String message);
     }
 
-
+    /**
+     * 业务逻辑处理，对数据的增删改查等操作
+     */
     interface Presenter extends BasePresenter {
 
         void insertUser();
