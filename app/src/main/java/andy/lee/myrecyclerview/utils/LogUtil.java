@@ -21,9 +21,22 @@ public class LogUtil {
 
     private static final int NOTHING = 5;
 
-    private static final int level = VERBOSE;//for develop
+    private static int level;
 
-//    private static final int level = NOTHING;//for release
+
+    /**
+     * 开启log
+     */
+    public static void init() {
+        level = VERBOSE;
+    }
+
+    /**
+     * 关闭log
+     */
+    public static void closeLog() {
+        level = NOTHING;
+    }
 
     public static void v(String tag, String msg) {
         if (level <= VERBOSE) {

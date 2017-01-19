@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import andy.lee.myrecyclerview.local.DBManager;
+import andy.lee.myrecyclerview.utils.LogUtil;
 
 /**
  * andy.lee.myrecyclerview.lib
@@ -19,6 +20,7 @@ public class MyApplication extends Application {
         super.onCreate();
         mContext = getApplicationContext();
         DBManager.initDB(this, "user.db");
+        LogUtil.init();
     }
 
     /**
