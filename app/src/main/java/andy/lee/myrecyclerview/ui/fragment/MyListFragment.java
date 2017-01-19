@@ -71,6 +71,7 @@ public class MyListFragment extends BaseFragment implements OnStartDragListener,
             @Override
             public void onDenied(List<String> permissionList) {
                 Toast.makeText(getActivity(), "权限被拒绝", Toast.LENGTH_SHORT).show();
+                //测试
             }
         });
     }
