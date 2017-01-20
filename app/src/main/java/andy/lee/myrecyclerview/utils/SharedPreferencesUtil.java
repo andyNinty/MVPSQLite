@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 /**
- * 工具类
+ * 工具类，用于存放一些小的数据
  * Created by andy on 17-1-17.
  */
 

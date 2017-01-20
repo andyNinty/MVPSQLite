@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.support.annotation.Nullable;
 
 /**
- * 工具类
+ * 工具类,用于获取安装包的一些信息
  * Created by andy on 17-1-17.
  */
 

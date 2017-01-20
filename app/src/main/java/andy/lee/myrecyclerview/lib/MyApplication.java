@@ -7,7 +7,7 @@ import andy.lee.myrecyclerview.local.DBManager;
 import andy.lee.myrecyclerview.utils.LogUtil;
 
 /**
- * andy.lee.myrecyclerview.lib
+ * Log工具类，方便开发调试和发布
  * Created by andy on 16-12-29.
  */
 
