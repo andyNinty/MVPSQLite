@@ -20,11 +20,12 @@ public class MyApplication extends Application {
         super.onCreate();
         mContext = getApplicationContext();
         DBManager.initDB(this, "user.db");
-        LogUtil.init();
+        LogUtil.init(this);
     }
 
     /**
      * 获取全局context
+     *
      * @return context
      */
     public static Context getContext() {
