@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
- * andy.lee.myrecyclerview.utils
+ * 工具类 用于保存log 方便调试开发和发版
  * Created by andy on 17-1-17.
  */
 
